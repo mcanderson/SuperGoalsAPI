@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace SuperGoalsAPI.Models
 {
-    public class TaskStepLog
+    public class TaskStep
     {
-        public TaskStepLog()
+        public TaskStep()
         {
 
         }
         [Key]
-        public Guid TaskStepLogId { get; set; }
         public Guid TaskStepId { get; set; }
-        public bool WasCompleted { get; set; }
-        public DateTime? DateCompleted { get; set; }
-
+        public Guid GoalTaskId { get; set; }
+        public string TaskStepName { get; set; }
+        public string TaskStepDescription { get; set; }
     }
 }

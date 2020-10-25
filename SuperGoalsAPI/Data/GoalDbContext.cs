@@ -14,10 +14,56 @@ namespace SuperGoalsAPI.Data
 
         public DbSet<Goal> Goals { get; set;  }
         public DbSet<GoalCategory> GoalCategories { get; set; }
-        public DbSet<GoalTask> Tasks { get; set; }
-        public DbSet<TaskLog> TaskLogs { get; set; }
-        public DbSet<TaskStepLog> TaskStepLogs { get; set; }
-        public DbSet<TaskSteps> TaskSteps { get; set; }
+
+        public DbSet<GoalSchedule> GoalSchedules { get; set; }
+        public DbSet<GoalTask> GoalTasks { get; set; }
+        public DbSet<GoalTaskLog> GoalTaskLogs { get; set; }
+        public DbSet<TaskStepLog> GoalTaskStepLogs { get; set; }
+        public DbSet<TaskStep> GoalTaskSteps { get; set; }
+        public DbSet<Priority> Priorities { get; set; }
+
+        // TODO update and story as secrets/key vault
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+           => optionsBuilder.UseNpgsql("Host=my_host;Database=my_db;Username=my_user;Password=my_pw");
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Goal>()
+                .HasKey(o => o.GoalId);
+
+            modelBuilder.Entity<GoalTask>().HasKey(o => o.GoalTaskId);
+
+
+            modelBuilder.Entity<GoalCategory>(entity => 
+            {
+                entity.HasKey(o => o.GoalCategoryId);
+
+            });
+
+
+            modelBuilder.Entity<GoalCategoryXwalk>(entity =>
+            {
+                entity.HasKey(dt => new { dt.GoalId, dt.GoalCategoryId });
+
+                entity.HasOne(g => g.GoalObj)
+                .WithMany(gcx => gcx.GoalCategories)
+                .HasForeignKey(fk => fk.GoalId);
+
+                entity.HasOne(g => g.GoalCategoryObj)
+                .WithMany(gcx => gcx.GoalsList)
+                .HasForeignKey(fk => fk.GoalCategoryId);
+            });
+
+            modelBuilder.Entity<GoalTaskLog>().HasKey(o => o.GoalTaskLogId);
+
+            modelBuilder.Entity<Priority>().HasKey(o => o.PriorityId);
+
+            modelBuilder.Entity<GoalSchedule>().HasKey(o => o.GoalScheduleId);
+
+            modelBuilder.Entity<TaskStep>().HasKey(o => o.TaskStepId);
+
+            modelBuilder.Entity<TaskStepLog>().HasKey(o => o.TaskStepLogId);
+        }
 
     }
 }

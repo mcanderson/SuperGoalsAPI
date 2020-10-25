@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace SuperGoalsAPI.Models
 {
-    public class GoalCategory
+    public class GoalCategoryXwalk
     {
-        public GoalCategory()
+        public GoalCategoryXwalk()
         {
 
         }
+
+        [Key]
+        public Guid GoalId { get; set; }
         [Key]
         public Guid GoalCategoryId { get; set; }
-        public string GoalCategoryName { get; set; }
-        public string GoalCategoryDescription { get; set; }
-        public virtual ICollection<GoalCategoryXwalk> GoalsList { get; set; }
+        public Goal GoalObj { get; set; }
+        public GoalCategory GoalCategoryObj {get; set;}
     }
 }
