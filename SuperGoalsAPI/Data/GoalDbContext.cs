@@ -20,6 +20,8 @@ namespace SuperGoalsAPI.Data
         public DbSet<GoalTaskLog> GoalTaskLogs { get; set; }
         public DbSet<TaskStepLog> GoalTaskStepLogs { get; set; }
         public DbSet<TaskStep> GoalTaskSteps { get; set; }
+
+        public DbSet<GoalTaskStepXwalk> GoalTaskStepXwalks { get; set; }
         public DbSet<Priority> Priorities { get; set; }
 
         // TODO update and story as secrets/key vault
@@ -56,9 +58,11 @@ namespace SuperGoalsAPI.Data
 
             modelBuilder.Entity<GoalTaskLog>().HasKey(o => o.GoalTaskLogId);
 
+            modelBuilder.Entity<GoalTaskStepXwalk>().HasKey(dt => new { dt.GoalTaskId, dt.GoalTaskStepId });
+
             modelBuilder.Entity<Priority>().HasKey(o => o.PriorityId);
 
-            modelBuilder.Entity<GoalSchedule>().HasKey(o => o.GoalScheduleId);
+            modelBuilder.Entity<GoalSchedule>().HasKey(o => o.ScheduleId);
 
             modelBuilder.Entity<TaskStep>().HasKey(o => o.TaskStepId);
 

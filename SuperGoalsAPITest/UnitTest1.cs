@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RestSharp;
 
 namespace SuperGoalsAPITest
 {
@@ -8,6 +9,8 @@ namespace SuperGoalsAPITest
         [TestMethod]
         public void TestMethod1()
         {
+            // TODO look at using RestSharp for testing
+
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SuperGoalsAPI.Models
 {
-    public class GoalSchedule
+    public class GoalSchedule : Schedule
     {
 
         public GoalSchedule()
@@ -14,9 +14,8 @@ namespace SuperGoalsAPI.Models
 
         }
         [Key]
-        public Guid GoalScheduleId { get; set; }
+        public Guid ScheduleId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public DateTime? Deadline { get; set; }
         public Guid PriorityId { get; set; }
-
     }
 }
