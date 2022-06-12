@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuperGoalsAPI.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,6 +20,7 @@ namespace SuperGoalsAPI.Models
         public string GoalName { get; set; }
         public string GoalDescription { get; set; }
         [ForeignKey("GoalTaskId")]
+        public StatusType GoalStatus { get; set; } 
         public virtual ICollection<GoalTask> GoalTasks { get; set; }
         [ForeignKey("GoalCategoryId")]
         public virtual ICollection<GoalCategoryXwalk> GoalCategories { get; set; }
