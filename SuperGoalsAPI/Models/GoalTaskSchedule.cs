@@ -1,14 +1,14 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-//namespace SuperGoalsAPI.Models
-//{
-//    public class GoalTaskSchedule : ISchedule
-//    {
-//        public Guid ScheduleId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-//        public DateTime? Deadline { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-//        public Guid PriorityId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-//    }
-//}
+namespace SuperGoalsAPI.Models
+{
+    public class GoalTaskSchedule
+    {
+        public Guid ScheduleId { get; set; }
+        public DateTime? Deadline { get; set ; }
+        public Guid? PriorityId { get; set ; }
+    }
+}
