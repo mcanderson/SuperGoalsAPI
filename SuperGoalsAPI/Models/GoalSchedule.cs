@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SuperGoalsAPI.Models
 {
-    public class GoalSchedule : Schedule
+    public class GoalSchedule : ISchedule
     {
 
         public GoalSchedule()

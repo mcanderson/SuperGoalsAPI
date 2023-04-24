@@ -11,6 +11,6 @@ namespace SuperGoalsAPI.Models
         public DateTime? Deadline { get; set; }
         public Guid PriorityId { get; set; }
 
-        public Guid GoalTaskId { get; set; }
+      //  public Guid GoalTaskId { get; set; }
     }
 }
