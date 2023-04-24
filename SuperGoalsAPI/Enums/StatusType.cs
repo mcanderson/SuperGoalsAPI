@@ -11,7 +11,9 @@ namespace SuperGoalsAPI.Enums
         [Description("Completed")]
         Completed = 3,
         [Description("Skipped")]
-        Skipped = 4
+        Skipped = 4,
+        [Description("Deleted")]
+        Deleted = 5
 
     }
 }
