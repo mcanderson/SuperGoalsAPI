@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Serilog; 
 using SuperGoalsAPI.Data;
 using System;
 using System.IO;
@@ -24,11 +26,18 @@ IConfiguration Configuration = new ConfigurationBuilder()
 builder.Services.AddDbContext<GoalDbContext>(options =>
     options.UseNpgsql(Configuration.GetConnectionString("DatabaseConnection")));
 
+// Add Serilog
+var logger = new LoggerConfiguration()
+  .ReadFrom.Configuration(builder.Configuration)
+  .Enrich.FromLogContext()
+  .CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
+
 builder.Services.AddControllers(options =>
 {
     options.EnableEndpointRouting = true;
     AuthorizationPolicy policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-    //following line allows enums (if any) correctly capture by open API docs.
 }).AddJsonOptions(opt => opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
 builder.Services.AddEndpointsApiExplorer();
